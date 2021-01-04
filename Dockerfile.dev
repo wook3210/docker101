@@ -1,0 +1,15 @@
+FROM node:alpine
+
+# chokidar 모듈은 웹팩과 바벨이 파일들의 모니터링을 하기 위해 사용하는 모듈이다. 
+# create-react-app에도 포함된 모듈임
+ENV CHOKIDAR_USEPOLLING=true
+
+WORKDIR /usr/src/app
+
+COPY package.json ./
+
+RUN npm install
+
+COPY ./ ./
+
+CMD ["npm", "run", "start"]
